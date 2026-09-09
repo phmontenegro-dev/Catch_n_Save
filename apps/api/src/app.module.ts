@@ -1,0 +1,23 @@
+import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+import { ThrottlerModule } from '@nestjs/throttler';
+import { HealthModule } from './modules/health/health.module';
+import { PrismaModule } from './infra/prisma/prisma.module';
+
+@Module({
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: ['../../.env', '.env'], // pega o .env da raiz
+    }),
+    ThrottlerModule.forRoot([
+      {
+        ttl: 60_000,
+        limit: 100,
+      },
+    ]),
+    PrismaModule,
+    HealthModule,
+  ],
+})
+export class AppModule {}

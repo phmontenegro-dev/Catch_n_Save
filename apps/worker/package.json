@@ -1,0 +1,32 @@
+{
+  "name": "@pkmn/worker",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "tsx watch src/main.ts",
+    "build": "tsc",
+    "start": "node dist/main.js",
+    "lint": "eslint \"src/**/*.ts\" --fix",
+    "test": "jest",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist",
+    "sync:catalog": "tsx src/scripts/sync-catalog.ts"
+  },
+  "dependencies": {
+    "@pkmn/types": "workspace:*",
+    "@prisma/client": "^5.20.0",
+    "bullmq": "^5.20.1",
+    "ioredis": "^5.4.1",
+    "pino": "^9.4.0",
+    "pino-pretty": "^11.2.2",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@pkmn/config": "workspace:*",
+    "@types/node": "^22.7.4",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.5",
+    "tsx": "^4.19.1",
+    "typescript": "^5.6.2"
+  }
+}
