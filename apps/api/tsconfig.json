@@ -10,11 +10,12 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "declaration": false,
+    "declarationMap": false,
     "incremental": true,
     "paths": {
       "@/*": ["src/*"]
     }
   },
-  "include": ["src/**/*", "prisma/seed.ts"],
-  "exclude": ["node_modules", "dist", "test"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", "test", "prisma"]
 }
