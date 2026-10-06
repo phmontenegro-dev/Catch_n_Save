@@ -6,6 +6,8 @@ import { HealthModule } from './modules/health/health.module';
 import { PrismaModule } from './infra/prisma/prisma.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { UsersModule } from './modules/users/users.module';
+import { CatalogModule } from './modules/catalog/catalog.module';
+import { CollectionModule } from './modules/collection/collection.module';
 
 @Module({
   imports: [
@@ -22,6 +24,8 @@ import { UsersModule } from './modules/users/users.module';
     PrismaModule,
     AuthModule,
     UsersModule,
+    CatalogModule,
+    CollectionModule,
     HealthModule,
   ],
   providers: [
