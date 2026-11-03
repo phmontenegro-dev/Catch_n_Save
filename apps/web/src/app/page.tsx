@@ -1,16 +1,14 @@
 import { Header } from '@/components/Header';
-import { ScrollStory } from '@/components/scroll-story/ScrollStory';
-import { CommunitySection } from '@/components/community/CommunitySection';
-import { FeaturesSection } from '@/components/features/FeaturesSection';
+import { Hero } from '@/components/hero/Hero';
+import { DashboardPreview } from '@/components/dashboard-preview/DashboardPreview';
 
 export default function HomePage() {
   return (
     <>
       <Header />
       <main>
-        <ScrollStory />
-        <CommunitySection />
-        <FeaturesSection />
+        <Hero />
+        <DashboardPreview />
       </main>
     </>
   );
