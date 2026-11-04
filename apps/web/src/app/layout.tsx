@@ -2,6 +2,9 @@ import type { Metadata } from 'next';
 import { Bowlby_One, Inter, JetBrains_Mono, Doto } from 'next/font/google';
 import { Providers } from './providers';
 import './globals.css';
+import { ThemeProvider } from 'next-themes';
+import { QueryProvider } from '@/lib/providers/QueryProvider';
+import { AuthProvider } from '@/lib/providers/AuthProvider';
 
 const bowlby = Bowlby_One({
   subsets: ['latin'],
@@ -36,13 +39,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="pt-BR"
-      suppressHydrationWarning
-      className={`${bowlby.variable} ${inter.variable} ${jetbrainsMono.variable} ${doto.variable}`}
-    >
-      <body>
-        <Providers>{children}</Providers>
+    <html lang="pt-BR" suppressHydrationWarning>
+      <body
+        className={`${bowlby.variable} ${inter.variable} ${jetbrainsMono.variable} ${doto.variable}`}
+      >
+        <ThemeProvider attribute="data-theme" defaultTheme="dark" enableSystem>
+          <QueryProvider>
+            <AuthProvider>{children}</AuthProvider>
+          </QueryProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
