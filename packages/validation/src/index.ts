@@ -3,6 +3,7 @@ import { z } from 'zod';
 // ============================================================
 // Auth
 // ============================================================
+export * from './auth.schemas';
 
 export const RegisterUserSchema = z.object({
   name: z.string().min(2).max(80),
