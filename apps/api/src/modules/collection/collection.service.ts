@@ -1,9 +1,4 @@
-import {
-  Injectable,
-  NotFoundException,
-  ForbiddenException,
-  BadRequestException,
-} from '@nestjs/common';
+import { Injectable, NotFoundException, ForbiddenException } from '@nestjs/common';
 import { Prisma, CardCondition } from '@prisma/client';
 import { PrismaService } from '../../infra/prisma/prisma.service';
 import { AddToCollectionDto } from './dto/add-to-collection.dto';
