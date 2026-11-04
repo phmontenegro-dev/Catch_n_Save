@@ -6,6 +6,8 @@ import { ApiZodBody, ZodBody } from '../../common/decorators/zod-body.decorator'
 import { RegisterDto, RegisterUserSchema } from './dto/register.dto';
 import { LoginDto, LoginSchema } from './dto/login.dto';
 import { RefreshDto, RefreshSchema } from './dto/refresh.dto';
+import { ForgotPasswordSchema, ForgotPasswordDto } from './dto/forgot-password.dto';
+import { ResetPasswordSchema, ResetPasswordDto } from './dto/reset-password.dto';
 
 @ApiTags('auth')
 @Controller('auth')
@@ -44,5 +46,25 @@ export class AuthController {
   @ApiZodBody(RefreshSchema)
   async logout(@ZodBody(RefreshSchema) dto: RefreshDto) {
     await this.authService.logout(dto.refreshToken);
+  }
+
+  @Post('forgot-password')
+  @HttpCode(200)
+  @Throttle({ default: { limit: 3, ttl: 60_000 } })
+  @ApiOperation({ summary: 'Solicita redefinição de senha' })
+  @ApiZodBody(ForgotPasswordSchema)
+  async forgotPassword(@ZodBody(ForgotPasswordSchema) body: ForgotPasswordDto) {
+    await this.authService.forgotPassword(body.email);
+    return { message: 'Se o email existir, você receberá instruções para redefinir a senha' };
+  }
+
+  @Post('reset-password')
+  @HttpCode(200)
+  @Throttle({ default: { limit: 5, ttl: 60_000 } })
+  @ApiOperation({ summary: 'Redefine a senha usando token recebido por email' })
+  @ApiZodBody(ResetPasswordSchema)
+  async resetPassword(@ZodBody(ResetPasswordSchema) body: ResetPasswordDto) {
+    await this.authService.resetPassword(body.token, body.newPassword);
+    return { message: 'Senha redefinida com sucesso' };
   }
 }
